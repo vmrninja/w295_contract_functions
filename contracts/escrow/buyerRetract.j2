@@ -1,0 +1,8 @@
+function buyerRetract(address sellerRetract) external {{ modifier }} {
+    {{ requirements }}
+    Sellers_table storage seller = sellers[sellerRetract];
+    require(seller.paid == false, 'seller already paid');
+    require(seller.buyerRetract <= block.timestamp, 'buyer cannot retract yet');
+    seller.paid = false;
+    payable(buyer).transfer(seller.amount);
+}

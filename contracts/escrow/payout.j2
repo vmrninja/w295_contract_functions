@@ -1,0 +1,9 @@
+function payout() external {
+    {{ requirements }}
+    Sellers_table storage seller = sellers[msg.sender];
+    require(seller.criteria <= block.timestamp, 'criteria not met');
+    require(seller.amount > 0, 'only the proper seller can be paid');
+    require(seller.paid == false, 'seller already paid');
+    seller.paid = true;
+    payable(msg.sender).transfer(seller.amount);
+}

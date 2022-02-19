@@ -1,0 +1,34 @@
+escrow:
+  - constructor:
+  - modifiers:
+    - onlyBuyer
+  - functions:
+    - addSeller:
+      - required: True
+      - variables_used: 
+      - conflicts_with: []
+      - options:
+        - triggers: []
+        - requirements: []
+        - modifier: &onlyBuyer
+
+    - buyerRetract:
+      - required: True
+      - variables_used: []
+      - conflicts_with: []
+      - options:
+        - triggers: []
+        - requirements: []
+        - modifier: &onlyBuyer
+
+    - payout:
+      - required: True
+      - variables_used: []
+      - conflicts_with: []
+      - options:
+        - triggers: []
+        - requirements: []
+        - modifier: []
+
+    - 
+
