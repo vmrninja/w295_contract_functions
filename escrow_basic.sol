@@ -20,7 +20,17 @@ contract Escrow {
         require(msg.sender == buyer, 'only buyer can take this action');
         _;
     }
-
+    
+    /*
+    1 Buyer -> n Sellers
+    This function is for a Buyer's controlled contract. It only allows the Buyer who is the owner
+    of this contract to add sellers. The Buyer in this case has the option to put several offers
+    to different sellers. The Buyer can utilize this function in an on-going contract to consolidate
+    all their transactions in a single contract putting bids to multiple sellers. When using this function
+    it is required to add another function which permits the Buyer to retract the offer or an automated trigger
+    that return the coins to the Buyer to prevent them to be locked in the contract forever.
+    */
+    
     function addSeller(address seller, uint timeToCriteria) external payable onlyBuyer {
         require(sellers[msg.sender].amount == 0, 'seller already exist');
         require(msg.value > 0, 'price must be above zero');
