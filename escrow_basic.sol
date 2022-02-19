@@ -16,8 +16,12 @@ contract Escrow {
         buyer = msg.sender;
     }
 
-    function addSeller(address seller, uint timeToCriteria) external payable {
-        require(msg.sender == buyer, 'only buyer can add sellers');
+    modifier onlyBuyer() {
+        require(msg.sender == buyer, 'only buyer can take this action');
+        _;
+    }
+
+    function addSeller(address seller, uint timeToCriteria) external payable onlyBuyer {
         require(sellers[msg.sender].amount == 0, 'seller already exist');
         require(msg.value > 0, 'price must be above zero');
         sellers[seller] = Sellers_table(msg.value, block.timestamp + timeToCriteria, block.timestamp + (3 * timeToCriteria), false);
@@ -32,10 +36,9 @@ contract Escrow {
         payable(msg.sender).transfer(seller.amount);
     }
 
-    function buyerRetract(address sellerRetract) external {
+    function buyerRetract(address sellerRetract) external onlyBuyer {
         Sellers_table storage seller = sellers[sellerRetract];
         require(seller.paid == false, 'seller already paid');
-        require(msg.sender == buyer, 'only buyer can retract');
         require(seller.buyerRetract <= block.timestamp, 'buyer cannot retract yet');
         seller.paid = false;
         payable(buyer).transfer(seller.amount);
