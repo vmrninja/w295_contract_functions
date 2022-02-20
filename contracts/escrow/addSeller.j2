@@ -1,0 +1,6 @@
+function addSeller(address seller, uint timeToCriteria) external payable {{ modifier }} {
+    {{ requirements }}
+    require(sellers[msg.sender].amount == 0, 'seller already exist');
+    require(msg.value > 0, 'price must be above zero');
+    sellers[seller] = Sellers_table(msg.value, block.timestamp + timeToCriteria, block.timestamp + (3 * timeToCriteria), false);
+}

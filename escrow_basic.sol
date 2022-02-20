@@ -2,15 +2,16 @@
 pragma solidity = 0.8.7;
 
 contract Escrow {
-    struct Sellers_table {
-        uint amount;
-        uint criteria;
-        uint buyerRetract;
-        bool paid;
-    }
 
-    mapping(address => Sellers_table) public sellers;
+    // stick to one seller for less complexity of defining types?
+    // otherwise too complex to define in YAML... for the time being
+    address seller;
     address public buyer;
+    
+    uint amount;
+    uint criteria;
+    uint buyerRetract;
+    bool paid;
 
     constructor() {
         buyer = msg.sender;

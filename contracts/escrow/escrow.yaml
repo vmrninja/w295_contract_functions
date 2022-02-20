@@ -1,0 +1,46 @@
+escrow:
+  # standardize constructor and put it in s3
+  - modifiers:
+    - onlyBuyer 
+
+  - required_functions:
+    - &addSeller
+    - &buyerRetract
+
+  - functions:
+    - addSeller:
+      - variables:
+        - address seller
+        - uint amount
+      - conflicts_with: []
+      - options:
+        # make up triggers and requirements that syntactically make sense
+        - triggers: []
+        - requirements: []
+        - modifier: &onlyBuyer
+
+    - buyerRetract:
+    # simplify variables into standard types
+    # basically - no structs for the time being
+      - variables_used:
+        - uint expiry
+      - conflicts_with: 
+        - conflicting_function_1
+        - conflicting_function_2
+      - options:
+        - triggers: []
+        - requirements: []
+        - modifier: &onlyBuyer
+
+    - payout:
+      - variables_used: []
+      - conflicts_with: []
+      - options:
+        - triggers: []
+        - requirements: []
+        - modifier: []
+
+    - conflicting_function_1:
+
+    - conflicting_function_2: 
+
