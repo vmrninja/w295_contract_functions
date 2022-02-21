@@ -9,9 +9,9 @@ pragma solidity ^0.8.7;
 // Arbitrator: Yes
 // Privilege to add parties: Owner only
 // Parties who can retract: Buyer Only
-// Criteria to retract: 30 days ellapsed time (will use 30secs for demo purposes)
+// Criteria to retract: 30 days elapsed time (will use 30secs for demo purposes)
 // Criteria for sellers pay: Arbitrator ok
-// Criteria to auto-cancel: 60 days ellapsed time (will use 60secs for demo purposes)
+// Criteria to auto-cancel: 60 days elapsed time (will use 60secs for demo purposes)
 
 contract Escrow {
     struct Sellers_table {
@@ -30,7 +30,7 @@ contract Escrow {
     address sellerID;
 
 // Owner Role: Buyer
-// Criteria to auto-cancel: 60 days ellapsed time (will use 60secs for demo purposes)
+// Criteria to auto-cancel: 60 days elapsed time (will use 60secs for demo purposes)
 
     constructor() {
         buyer = msg.sender;
