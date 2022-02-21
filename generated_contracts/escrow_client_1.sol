@@ -13,7 +13,7 @@ pragma solidity ^0.8.7;
 // Criteria for sellers pay: Arbitrator ok
 // Criteria to auto-cancel: 60 days elapsed time (will use 60secs for demo purposes)
 
-contract Escrow {
+contract Escrow_client_1 {
     struct Sellers_table {
         uint amount;
         bool criteriaMet;
