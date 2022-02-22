@@ -1,0 +1,7 @@
+    function addBuyer() external payable {{ modifier }} {
+        {{ single_buyer_requirements }}
+        require(voidContract == false, '** Contract has been voided by Seller **');
+        require(buyers[msg.sender].amount == 0, '** Buyer already exists **');
+        require(msg.value > 0, '** Offer price must be above zero **');
+        buyers[msg.sender] = participant_table(msg.value, false, false, false);
+    }

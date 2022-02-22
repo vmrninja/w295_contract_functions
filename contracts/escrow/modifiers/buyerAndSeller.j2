@@ -1,0 +1,4 @@
+modifier buyerAndSeller() {
+    require((sellers[msg.sender].amount != 0) || (buyers[msg.sender] != 0), 'only buyer or seller can take this action');
+    _;
+}

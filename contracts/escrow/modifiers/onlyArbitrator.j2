@@ -1,0 +1,4 @@
+modifier onlyArbitrator() {
+    require(msg.sender == arbitrator, 'only arbitrator can take this action');
+    _;
+}

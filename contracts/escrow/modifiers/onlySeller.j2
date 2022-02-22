@@ -1,0 +1,4 @@
+modifier onlySeller() {
+    require(sellers[msg.sender].amount != 0, 'only seller can take this action');
+    _;
+}

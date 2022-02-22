@@ -1,0 +1,6 @@
+function addArbitrator(address arbitratorInput) external {
+    require(msg.sender == owner, '** Only owner can add Arbitrator **');
+    require(arbitratorAdded == false, '** Arbitrator has already been added **');
+    arbitratorAdded = true;
+    arbitrator = arbitratorInput;
+}

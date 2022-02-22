@@ -1,0 +1,6 @@
+function sellerRetract() external {{ modifier }} {
+    require(msg.sender == seller, '** Only actual Seller can retract themselves **');
+    require(voidContract == false, '** Contract has been voided by Seller **');
+    require(sellerPaid == false, '** Seller has already been paid **');
+    voidContract = true;
+}

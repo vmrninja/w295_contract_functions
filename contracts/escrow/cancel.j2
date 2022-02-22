@@ -1,0 +1,10 @@
+// not sure how this is supposed to work? but just putting it in its own file for now
+
+function autoCancel() external {
+    Sellers_table storage seller = sellers[sellerID];
+    require(sellerCount == 1, '** No value exist in this contract **');
+    require(seller.paid == false, '** Seller has already been paid **');
+    require(autoCancelMet <= block.timestamp, '** Contract has not met auto-cancellation criteria **');
+    seller.paid = false;
+    payable(buyer).transfer(seller.amount);
+}

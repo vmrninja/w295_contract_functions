@@ -14,9 +14,11 @@ contract Escrow {
     mapping(address => participant_table) public buyers;
     
     address public owner;
+    string public owner_role;
 
-    constructor() {
-        owner = msg.sender;
+    constructor() { 
+        owner = msg.sender; 
+        owner_role = "buyer";
     }
 
     modifier onlyOwner() {

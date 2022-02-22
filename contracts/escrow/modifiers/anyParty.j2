@@ -1,0 +1,4 @@
+modifier anyParty() {
+    require((sellers[msg.sender].amount != 0) || (buyers[msg.sender] != 0) || (msg.sender == arbitrator), 'only involved parties can take this action');
+    _;
+}
