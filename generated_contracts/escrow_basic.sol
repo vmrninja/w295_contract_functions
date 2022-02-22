@@ -3,22 +3,24 @@ pragma solidity = 0.8.7;
 
 contract Escrow {
 
-    // stick to one seller for less complexity of defining types?
-    // otherwise too complex to define in YAML... for the time being
-    address seller;
-    address public buyer;
-    
-    uint amount;
-    uint criteria;
-    uint buyerRetract;
-    bool paid;
-
-    constructor() {
-        buyer = msg.sender;
+    struct participant_table {
+        uint amount;
+        bool criteriaMet;
+        bool buyerRetract;
+        bool paid;
     }
 
-    modifier onlyBuyer() {
-        require(msg.sender == buyer, 'only buyer can take this action');
+    mapping(address => participant_table) public sellers;
+    mapping(address => participant_table) public buyers;
+    
+    address public owner;
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, 'only buyer can take this action');
         _;
     }
     
@@ -35,11 +37,11 @@ contract Escrow {
     function addSeller(address seller, uint timeToCriteria) external payable onlyBuyer {
         require(sellers[msg.sender].amount == 0, 'seller already exist');
         require(msg.value > 0, 'price must be above zero');
-        sellers[seller] = Sellers_table(msg.value, block.timestamp + timeToCriteria, block.timestamp + (3 * timeToCriteria), false);
+        sellers[seller] = participant_table(msg.value, block.timestamp + timeToCriteria, block.timestamp + (3 * timeToCriteria), false);
     }
 
     function payout() external {
-        Sellers_table storage seller = sellers[msg.sender];
+        participant_table storage seller = sellers[msg.sender];
         require(seller.criteria <= block.timestamp, 'criteria not met');
         require(seller.amount > 0, 'only the proper seller can be paid');
         require(seller.paid == false, 'seller already paid');
