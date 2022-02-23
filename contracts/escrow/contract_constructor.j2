@@ -1,0 +1,7 @@
+    constructor() {
+        buyer = msg.sender;
+        owner = msg.sender;
+        contractExecuted = false;
+        executionReleased = false;
+        autoCancelMet = block.timestamp + 120;
+    }
