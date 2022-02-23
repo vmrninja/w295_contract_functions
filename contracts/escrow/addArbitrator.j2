@@ -1,0 +1,10 @@
+## Example of adding arbitrator with only owner restriction:
+## function addArbitrator(address arbitratorInput) external onlyOwner activeContract {
+##     require(arbitrator == address(0), '** Arbitrator has already been added to this contract **');
+##     arbitrator = arbitratorInput;
+## }
+
+function addArbitrator(address arbitratorInput) external {{WHO_CAN_ADD}} activeContract {
+    require(arbitrator == address(0), '** Arbitrator has already been added to this contract **');
+    arbitrator = arbitratorInput;
+}
