@@ -1,8 +1,14 @@
-function buyerRetract(address sellerRetract) external {{ modifier }} {
-    {{ requirements }}
-    Sellers_table storage seller = sellers[sellerRetract];
-    require(seller.paid == false, 'seller already paid');
-    require(seller.buyerRetract <= block.timestamp, 'buyer cannot retract yet');
-    seller.paid = false;
-    payable(buyer).transfer(seller.amount);
+## Example of owner retract:
+## function ownerRetract() external onlyOwner {
+##     require(contractExecuted == false, '** This contract has already been executed **');
+##     require(retractCriteria <= block.timestamp, '** Criteria for retract has not been met yet **');
+##     contractExecuted = true;
+##     payable(buyer).transfer(buyerOffer);
+## }
+
+function {{RETRACT}}() external {{WHO_CAN_RETRACT}} {
+    require(contractExecuted == false, '** This contract has already been executed **');
+    require(retractCriteria <= block.timestamp, '** Criteria for retract has not been met yet **');
+    contractExecuted = true;
+    {{BUYER_RETRACT_TRANSFER}};
 }
