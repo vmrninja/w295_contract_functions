@@ -1,7 +1,16 @@
-function addSeller(address sellerInput, uint retractInput) external payable onlyOwner activeContract {
+## Example function:
+## function addSeller(address sellerInput, uint retractInput) external payable onlyOwner activeContract {
+##     require(seller == address(0), '** Seller has already been added to this contract **');
+##     require(msg.value > 0, '** Offer price must be above zero **');
+##     seller = sellerInput;
+##     buyerOffer = msg.value;
+##     retractCriteria = block.timestamp + retractInput;
+##     }
+
+function addSeller(address sellerInput {{RETRACT_INPUT}}) external payable {{ONLY_ONWER}} activeContract {
     require(seller == address(0), '** Seller has already been added to this contract **');
     require(msg.value > 0, '** Offer price must be above zero **');
     seller = sellerInput;
     buyerOffer = msg.value;
-    retractCriteria = block.timestamp + retractInput;
+    {{SET_RETRACT_CRITERIA}};
     }
