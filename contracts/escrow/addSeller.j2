@@ -1,6 +1,7 @@
-function addSeller(address seller, uint timeToCriteria) external payable {{ modifier }} {
-    {{ requirements }}
-    require(sellers[msg.sender].amount == 0, 'seller already exist');
-    require(msg.value > 0, 'price must be above zero');
-    sellers[seller] = Sellers_table(msg.value, block.timestamp + timeToCriteria, block.timestamp + (3 * timeToCriteria), false);
-}
+function addSeller(address sellerInput, uint retractInput) external payable onlyOwner activeContract {
+    require(seller == address(0), '** Seller has already been added to this contract **');
+    require(msg.value > 0, '** Offer price must be above zero **');
+    seller = sellerInput;
+    buyerOffer = msg.value;
+    retractCriteria = block.timestamp + retractInput;
+    }
