@@ -1,4 +1,0 @@
-modifier activeContract {
-    require(autoCancelMet >= block.timestamp, '** This contract has been automatically cancelled **');
-    _;
-}
