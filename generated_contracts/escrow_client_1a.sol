@@ -32,7 +32,7 @@ contract Escrow_client_1a {
         owner = msg.sender;
         contractExecuted = false;
         executionReleased = false;
-        autoCancelMet = block.timestamp + 60;
+        autoCancelMet = block.timestamp + 340;
     }
 
     modifier onlyOwner {
