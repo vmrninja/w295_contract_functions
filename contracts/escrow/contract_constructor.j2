@@ -1,7 +1,7 @@
     constructor() {
-        buyer = msg.sender;
+        {{role}} = msg.sender;
         owner = msg.sender;
         contractExecuted = false;
         executionReleased = false;
-        autoCancelMet = block.timestamp + 120;
+        autoCancelMet = block.timestamp + {{time_to_auto_cancel}};
     }
