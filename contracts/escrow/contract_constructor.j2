@@ -1,7 +1,16 @@
-    constructor() {
-        {{role}} = msg.sender;
-        owner = msg.sender;
-        contractExecuted = false;
-        executionReleased = false;
-        autoCancelMet = block.timestamp + {{time_to_auto_cancel}};
+## Example of constructor for buyer contract with auto-cancel:
+## constructor() {
+##    buyer = msg.sender;
+##    owner = msg.sender;
+##    contractExecuted = false;
+##    executionReleased = false;
+##    autoCancelMet = block.timestamp + 340;
+##    }
+
+constructor() {
+    {{ROLE}} = msg.sender;
+    owner = msg.sender;
+    contractExecuted = false;
+    executionReleased = false;
+    autoCancelMet = block.timestamp + {{TIME_TO_AUTO_CANCEL}};
     }
