@@ -1,6 +1,6 @@
-function arbitratorOk(address sellerOked) external activeContract {
+function arbitratorOk(address sellerApproved) external activeContract {
     require(arbitrator != address(0), '** Arbitrator has not been added to this contract **');
     require(msg.sender == arbitrator, '** Only Arbitrator can Ok Seller pay **');
-    require(seller == sellerOked, '** Seller does not match contract records **');
+    require(seller == sellerApproved, '** Seller does not match contract records **');
     executionReleased = true;
 }
