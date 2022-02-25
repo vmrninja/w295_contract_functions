@@ -1,4 +1,4 @@
 modifier activeContract {
-    require(autoCancelMet >= block.timestamp, '** This contract has been automatically cancelled **');
+    require(autoCancelTime >= block.timestamp, '** This contract has been automatically cancelled **');
     _;
 }
