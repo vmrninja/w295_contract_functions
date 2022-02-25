@@ -1,0 +1,4 @@
+modifier onlySeller {
+    require(msg.sender == seller, '** Only Seller can execute this clause **');
+    _;
+}
