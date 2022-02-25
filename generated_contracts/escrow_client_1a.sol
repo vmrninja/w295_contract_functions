@@ -20,7 +20,7 @@ contract Escrow_client_1a {
     address public owner;
     uint buyerOffer;
     uint retractCriteria;
-    uint autoCancelMet;
+    uint autoCancelTime;
     bool contractExecuted;
     bool executionReleased;
 
@@ -32,16 +32,16 @@ contract Escrow_client_1a {
         owner = msg.sender;
         contractExecuted = false;
         executionReleased = false;
-        autoCancelMet = block.timestamp + 340;
+        autoCancelTime = block.timestamp + 340;
     }
 
     modifier onlyOwner {
-        require(msg.sender == owner, '** Only owner can execute this clause **');
+        require(msg.sender == owner, '** Only Owner can execute this clause **');
         _;
     }
 
     modifier activeContract {
-        require(autoCancelMet >= block.timestamp, '** This contract has been automatically cancelled **');
+        require(autoCancelTime >= block.timestamp, '** This contract has been automatically cancelled **');
         _;
 }
 // Contract Parties: Limited to 1 Seller and 1 Buyer
@@ -74,10 +74,10 @@ contract Escrow_client_1a {
                                        
 // Criteria for sellers pay: Arbitrator ok
 
-    function arbitratorOk(address sellerOked) external activeContract {
+    function arbitratorOk(address approvedSeller) external activeContract {
         require(arbitrator != address(0), '** Arbitrator has not been added to this contract **');
         require(msg.sender == arbitrator, '** Only Arbitrator can Ok Seller pay **');
-        require(seller == sellerOked, '** Seller does not match contract records **');
+        require(seller == approvedSeller, '** Seller does not match contract records **');
         executionReleased = true;
     }
 
