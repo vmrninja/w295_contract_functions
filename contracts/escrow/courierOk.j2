@@ -1,0 +1,6 @@
+function courierOk(address approvedSeller) external activeContract {
+    require(courier != address(0), '** Courier has not been added to this contract **');
+    require(msg.sender == courier, '** Only Courier can Ok Seller pay **');
+    require(seller == approvedSeller, '** Seller does not match contract records **');
+    sellerPayAuthorized = true;
+}

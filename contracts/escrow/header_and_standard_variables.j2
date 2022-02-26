@@ -6,20 +6,23 @@ pragma solidity {{SOLIDITY_VERSION}};
 // Contract Type: {{CONTRACT_TYPE}}
 // Owner Role: {{OWNER}}
 // Contract Parties: Limited to 1 Seller and n Buyers
-// Arbitrator: {{ARBITRATOR_OPTION}}
-// Privilege to add parties: {{PRIVILEGE_ADD_PARTIES}} (can only add self)
+// Arbitrator (representing if an arbitrator is present): {{ARBITRATOR_OPTION}}
+// Courier (flips sellerPayAuthorized to true) is present: {{ COURIER_ADDRESS}} (fill with `address public courier;`)
+// Privilege to add parties: {{ WHO_CAN_ADD }} (can only add self)
 // Parties who can retract: {{WHO_CAN_RETRACT}} (self only)
-// Criteria to retract: {{CRITERIA_TO_RETRACT}}
+// Criteria (Time-based for now) to retract: {{TIME_TO_RETRACT}}
 // Criteria for sellers pay: {{CRITERIA_TO_PAY_SELLER}}
 // Criteria to auto-cancel: {{AUTO_CANCEL_OPTION}}
 
-contract {{CONTRACT_NAME}} {
+contract {{ CONTRACT_NAME }} {
     address public buyer;
     address public seller;
     address public arbitrator;
     address public owner;
+    {{ COURIER_ADDRESS }}
     uint buyerOffer;
     uint retractCriteria;
     uint autoCancelTime;
     bool contractExecuted;
-    bool executionReleased;
+    bool sellerPayAuthorized;
+    

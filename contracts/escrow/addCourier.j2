@@ -1,0 +1,4 @@
+function addCourier(address courierAddress) external payable onlyOwner activeContract {
+    require(courier == address(0), '** Seller has already been added to this contract **');
+    courier = courierAddress;
+}

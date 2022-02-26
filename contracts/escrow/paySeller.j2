@@ -2,7 +2,7 @@
 ## function paySeller() external activeContract {
 ##     require(contractExecuted == false, '** This contract has already been executed **');
 ##     require(msg.sender == seller, '** Only the actual Seller can be paid **');
-##     require(executionReleased == true, '** Criteria for Seller payment not met **');
+##     require(sellerPayAuthorized == true, '** Criteria for Seller payment not met **');
 ##     contractExecuted = true;
 ##     payable(msg.sender).transfer(buyerOffer);
 ## }
@@ -10,7 +10,7 @@
 function paySeller() external activeContract {
     require(contractExecuted == false, '** This contract has already been executed **');
     require(msg.sender == seller, '** Only the actual Seller can be paid **');
-    require(executionReleased == true, '** Criteria for Seller payment not met **');
+    require(sellerPayAuthorized == true, '** Criteria for Seller payment not met **');
     contractExecuted = true;
     payable(msg.sender).transfer(buyerOffer);
 }

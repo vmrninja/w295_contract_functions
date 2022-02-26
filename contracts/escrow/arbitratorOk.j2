@@ -2,5 +2,5 @@ function arbitratorOk(address approvedSeller) external activeContract {
     require(arbitrator != address(0), '** Arbitrator has not been added to this contract **');
     require(msg.sender == arbitrator, '** Only Arbitrator can Ok Seller pay **');
     require(seller == approvedSeller, '** Seller does not match contract records **');
-    executionReleased = true;
+    sellerPayAuthorized = true;
 }

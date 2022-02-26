@@ -3,12 +3,16 @@
 ##     require(contractExecuted == false, '** This contract has already been executed **');
 ##     require(retractCriteria <= block.timestamp, '** Criteria for retract has not been met yet **');
 ##     contractExecuted = true;
-##     payable(buyer).transfer(buyerOffer);
+##     payable(buyer).transfer(buyerOffer); <-- seller would never put any money into contract so if seller retracts, nothing happens for seller
 ## }
 
-function {{RETRACT}}() external {{WHO_CAN_RETRACT}} {
+function {{ ROLE_RETRACT }} () external {{ WHO_CAN_RETRACT }} {
     require(contractExecuted == false, '** This contract has already been executed **');
     require(retractCriteria <= block.timestamp, '** Criteria for retract has not been met yet **');
     contractExecuted = true;
-    {{BUYER_RETRACT_TRANSFER}};
+
+    if (buyer != address(0)) {
+        payable(buyer).transfer(buyerOffer);    
+    }
+
 }

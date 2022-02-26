@@ -1,0 +1,17 @@
+## Example function:
+## 
+## function addBuyer(address buyerAddress, uint retractInput) external payable onlyOwner activeContract {
+##     require(buyer == address(0), '** Seller has already been added to this contract **');
+##     require(msg.value > 0, '** Offer price must be above zero **');
+##     buyer = buyerAddress;
+##     buyerOffer = msg.value;
+##     retractCriteria = block.timestamp + retractInput;
+##     }
+
+function addBuyer(address buyerAddress {{ TIME_TO_RETRACT }}) external payable {{ WHO_CAN_ADD }} activeContract {
+    require(buyer == address(0), '** Seller has already been added to this contract **');
+    require(msg.value > 0, '** Offer price must be above zero **');
+    buyer = buyerAddress;
+    buyerOffer = msg.value;
+    {{ SET_RETRACTION_TIME }};
+    }
